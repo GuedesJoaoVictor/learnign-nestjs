@@ -3,13 +3,14 @@ import { AppController } from './app.controller';
 import * as dotenv from 'dotenv';
 import path from 'path';
 import { PrismaService } from './database/prisma.service';
+import { UserModule } from './user/user.module';
 
 dotenv.config({
   path: path.resolve(__dirname, '..', '.env'),
 });
 
 @Module({
-  imports: [],
+  imports: [UserModule],
   controllers: [AppController],
   providers: [PrismaService],
 })
