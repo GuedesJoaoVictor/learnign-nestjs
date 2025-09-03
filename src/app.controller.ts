@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { PrismaService } from './database/prisma.service';
-import { User } from '@prisma/client';
+import { UserDTO } from './dtos/user.dto';
 
 @Controller()
 export class AppController {
@@ -8,7 +8,7 @@ export class AppController {
 
   @Get()
   async getHello(): Promise<{ message: string }> {
-    const member: User = await this.prismaService.user.create({
+    const member: UserDTO = await this.prismaService.user.create({
       data: {
         email: 'guedes@email.com',
         name: 'Guedes',
