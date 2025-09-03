@@ -23,9 +23,9 @@ export class UserService {
     }
 
     async create(data: UserDTO) {
-        const { name, email, password, matricula } = data;
+        const { name, email, password, matricula, tipo } = data;
 
-        if (!name || !email || !password || !matricula) {
+        if (!name || !email || !password || !matricula || !tipo) {
             throw new BadRequestException('Nome, email, senha, matrícula e tipo são obrigatórios.');
         }
 
@@ -44,7 +44,7 @@ export class UserService {
                     email,
                     password,
                     matricula,
-                    tipo: TipoUsuario.ALUNO
+                    tipo
                 }
             })
         } catch (error) {
