@@ -22,6 +22,11 @@ export class LoginService {
             throw new NotFoundException("Usuário não encontrado.");
         }
 
+        if (user.password !== password) {
+            throw new BadRequestException("Senha inválida.");
+        }
+
+        console.log("Usuario logado!", user.email, user.password);
     }
 
 }
