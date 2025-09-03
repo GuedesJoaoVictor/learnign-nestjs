@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { PrismaService } from './database/prisma.service';
-import { UserDTO } from './dtos/user.dto';
+import { UserDTO } from './core/dtos/user.dto';
 
 @Controller()
 export class AppController {

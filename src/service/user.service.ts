@@ -1,6 +1,7 @@
 import { BadRequestException, Injectable, InternalServerErrorException } from "@nestjs/common";
 import { PrismaService } from "src/database/prisma.service";
-import { UserDTO } from "../dtos/user.dto";
+import { UserDTO } from "../core/dtos/user.dto";
+import { TipoUsuario } from "@prisma/client";
 
 @Injectable()
 export class UserService {
@@ -43,7 +44,7 @@ export class UserService {
                     email,
                     password,
                     matricula,
-                    tipo: 'USER'
+                    tipo: TipoUsuario.ALUNO
                 }
             })
         } catch (error) {
