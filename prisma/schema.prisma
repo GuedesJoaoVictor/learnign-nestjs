@@ -27,6 +27,7 @@ model User {
   password  String
   matricula String  @unique
   tipo      TipoUsuario
+  hashedRt  String? // hashed refresh token
 
   Agendamento Agendamento[]
 }
