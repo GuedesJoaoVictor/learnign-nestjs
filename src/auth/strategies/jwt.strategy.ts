@@ -16,10 +16,10 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
             },
             ignoreExpiration: false,
             secretOrKey: (() => {
-                if (!process.env.JWT_ACESS_SECRET) {
+                if (!process.env.JWT_ACCESS_SECRET) {
                     throw new Error('JWT_ACESS_SECRET environment variable is not set');
                 }
-                return process.env.JWT_ACESS_SECRET;
+                return process.env.JWT_ACCESS_SECRET;
             })(),
         });
     }

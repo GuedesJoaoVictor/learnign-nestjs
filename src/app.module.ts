@@ -5,13 +5,18 @@ import path from 'path';
 import { PrismaService } from './database/prisma.service';
 import { UserModule } from './module/user.module';
 import { LoginModule } from './module/login.module';
+import { AuthModule } from './auth/auth.module';
 
 dotenv.config({
   path: path.resolve(__dirname, '..', '.env'),
 });
 
 @Module({
-  imports: [UserModule, LoginModule],
+  imports: [
+    UserModule, 
+    LoginModule, 
+    AuthModule
+  ],
   controllers: [AppController],
   providers: [PrismaService],
 })
