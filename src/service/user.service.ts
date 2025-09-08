@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, InternalServerErrorException } from "@nestjs/common";
 import { PrismaService } from "src/database/prisma.service";
 import { UserDTO } from "../core/dtos/user.dto";
-import { TipoUsuario } from "@prisma/client";
+import * as bcrypt from "bcrypt";
 
 @Injectable()
 export class UserService {
@@ -38,11 +38,13 @@ export class UserService {
         }
 
         try {
+            const saltRounds = 10;
+            const hashedPassword = await bcrypt.hash(password, saltRounds);
             return this.prismaService.user.create({
                 data: {
                     name,
                     email,
-                    password,
+                    password: hashedPassword,
                     matricula,
                     tipo
                 }

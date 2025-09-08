@@ -26,7 +26,6 @@ export class LoginService {
             throw new BadRequestException("Senha inválida.");
         }
 
-        console.log("Usuario logado!", user.email, user.password);
     }
 
 }

@@ -8,18 +8,6 @@ export class AppController {
 
   @Get()
   async getHello(): Promise<{ message: string }> {
-    const member: UserDTO = await this.prismaService.user.create({
-      data: {
-        email: 'guedes@email.com',
-        name: 'Guedes',
-        password: '123456',
-        matricula: '202211475',
-        tipo: 'ADMIN',
-      },
-    });
-
-    console.log(member);
-
     return {
       message: 'Hello World!',
     };
