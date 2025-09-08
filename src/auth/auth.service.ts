@@ -9,8 +9,8 @@ import { TipoUsuario } from "@prisma/client";
 export class AuthService {
     constructor(private prismaService: PrismaService, private jwtService: JwtService) {}
 
-    async validateUser(email: string, passwordForm: string) {
-        const user = await this.prismaService.user.findUnique({ where: { email } });
+    async validateUser(matricula: string, passwordForm: string) {
+        const user = await this.prismaService.user.findUnique({ where: { matricula } });
         
         if (!user) {
             return null;
@@ -24,8 +24,8 @@ export class AuthService {
         return safe;
     }
 
-    async signTokens(userId: number, email: string, tipo: TipoUsuario) {
-        const payload = { sub: userId, email, tipo };
+    async signTokens(userId: number, matricula: string, tipo: TipoUsuario) {
+        const payload = { sub: userId, matricula, tipo };
         const [access_token, refresh_token] = await Promise.all([
             this.jwtService.signAsync(payload, {
                 secret: process.env.JWT_ACCESS_SECRET,
@@ -49,7 +49,7 @@ export class AuthService {
     }
 
     async login(user: UserDTO) {
-        const tokens = await this.signTokens(user.id, user.email, user.tipo);
+        const tokens = await this.signTokens(user.id, user.matricula, user.tipo);
         await this.updateRtHash(user.id, tokens.refresh_token);
         return tokens;
     }
