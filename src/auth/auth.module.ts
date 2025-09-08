@@ -10,6 +10,12 @@ import { PrismaService } from "src/database/prisma.service";
 @Module({
     imports: [JwtModule.register({})],
     controllers: [AuthController],
-    providers: [AuthService, LocalStrategy, JwtStrategy, RtStrategy, PrismaService],
+    providers: [
+        AuthService, 
+        LocalStrategy, 
+        JwtStrategy, 
+        RtStrategy, 
+        PrismaService
+    ],
 })
 export class AuthModule {}
